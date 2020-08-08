@@ -1,0 +1,955 @@
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* instead of 10px, I have used the Percentage */
+  font-size: 62.5%;
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  min-height: 75vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+p {
+  color: black;
+  font-size: 1.4rem;
+  margin-top: 5px;
+  line-height: 2.5rem;
+  font-weight: 300;
+  letter-spacing: .05rem;
+}
+
+.section-title {
+  font-size: 4rem;
+  font-weight: 300;
+  color: black;
+  /* I have used rem instead of px */
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+  text-align: center;
+}
+
+.section-title span {
+  color: crimson;
+}
+
+.cta {
+  display: inline-block;
+  padding: 10px 30px;
+  color: white;
+  background-color: transparent;
+  border: 2px solid crimson;
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: .1rem;
+  /* Instead of 30px, I have used 3rem */
+  margin-top: 3rem;
+  transition: .3s ease;
+  transition-property: background-color, color;
+  /* I have added this property to remove the Shivering Effect on being Hovered */
+  backface-visibility: hidden;
+}
+
+.cta:hover {
+  background-color: crimson;
+}
+
+.brand h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: white;
+}
+
+.brand h1 span {
+  color: crimson;
+}
+
+/* Header Section */
+#header {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+}
+
+#header .header {
+  min-height: 8vh;
+  background-color: transparent;
+  transition: .5s ease background-color;
+}
+
+#header .nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  max-width: 1300px;
+  padding: 0 10px;
+}
+
+#header .nav-list ul {
+  list-style: none;
+  position: absolute;
+  background-color: rgba(31, 30, 30);
+  width: 100vw;
+  height: 100vh;
+  left: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  overflow-x: hidden;
+  transition: .5s ease left;
+}
+
+#header .nav-list ul.active {
+  left: 0;
+}
+
+#header .nav-list ul a {
+  font-size: 2.5rem;
+  font-weight: 500;
+  letter-spacing: .2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: white;
+  padding: 20px;
+  display: block;
+}
+
+#header .nav-list ul a::after {
+  content: attr(data-after);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  color: rgba(240, 248, 255, .021);
+  /* I have adjusted the font-size & font-weight a little bit */
+  font-size: 8.5rem;
+  font-weight: 300;
+  letter-spacing: 50px;
+  z-index: -1;
+  transition: .3s ease letter-spacing;
+}
+
+#header .nav-list ul li:hover a {
+  color: crimson;
+}
+
+#header .nav-list ul li:hover a::after {
+  transform: translate(-50%, -50%) scale(1);
+  letter-spacing: initial;
+}
+
+#header .hamburger {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  border: 3px solid white;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  cursor: pointer;
+  transform: scale(.8);
+}
+
+#header .hamburger::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid white;
+  animation: hamburger_pulse .8s ease infinite;
+}
+
+#header .hamburger .bar {
+  height: 2px;
+  width: 30px;
+  position: relative;
+  background-color: white;
+  z-index: -1;
+}
+
+#header .hamburger .bar::after,
+#header .hamburger .bar::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  transition: .3s ease;
+  transition-property: top, bottom;
+}
+
+#header .hamburger .bar::after {
+  top: 6px;
+}
+
+#header .hamburger .bar::before {
+  bottom: 6px;
+}
+
+#header .hamburger.active .bar::after {
+  top: 0;
+}
+
+#header .hamburger.active .bar::before {
+  bottom: 0;
+}
+
+/* End of Header Section */
+
+/* Hero Section */
+#hero {
+  background-image: url('./img/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  z-index: 1;
+}
+
+#hero .hero {
+  min-height: 100vh;
+}
+
+#hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: .7;
+  z-index: -1;
+}
+
+#hero .hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  justify-content: flex-start;
+}
+
+#hero h1 {
+  display: block;
+  /* I have used max-content, as fix-content is no longer valid */
+  width: max-content;
+  font-size: 4rem;
+  position: relative;
+  color: transparent;
+  animation: text_reveal .5s ease forwards;
+}
+
+#hero h1:nth-child(1) {
+  animation-delay: 1s;
+}
+
+#hero h1:nth-child(2) {
+  animation-delay: 2s;
+}
+
+#hero h1:nth-child(3) {
+  font-weight: 500;
+  animation: text_reveal_name 1s ease forwards;
+  animation-delay: 3s;
+}
+
+#hero h1 span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background-color: crimson;
+  animation: text_reveal_box 1s ease;
+}
+
+#hero h1:nth-child(1) span {
+  animation-delay: .3s;
+}
+
+#hero h1:nth-child(2) span {
+  animation-delay: 1.5s;
+}
+
+#hero h1:nth-child(3) span {
+  animation-delay: 2.5s;
+}
+
+/* End of Hero Section */
+
+/* Services Section */
+#services .services {
+  flex-direction: column;
+  text-align: center;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+#services .service-top {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+#services .service-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+#services .service-item {
+  flex-basis: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  /* I have used rem instead of px */
+  padding: 3rem;
+  border-radius: 10px;
+  background-image: url('./img/img1.jpg');
+  background-size: cover;
+  margin: 10px 5%;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+#services .service-item::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  opacity: .9;
+  z-index: -1;
+}
+
+#services .service-bottom .icon {
+  height: 80px;
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+#services .service-item h2 {
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+#services .service-item p {
+  color: white;
+  text-align: left;
+}
+
+/* End of Services Section */
+
+/* Projects Section */
+#projects .projects {
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 0;
+}
+
+#projects .projects-header h1 {
+  margin-bottom: 50px;
+}
+
+#projects .all-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#projects .project-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 20px auto;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+#projects .project-info {
+  padding: 30px;
+  flex-basis: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  color: white;
+}
+
+#projects .project-info h1 {
+  font-size: 4rem;
+  font-weight: 500;
+}
+
+#projects .project-info h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+#projects .project-info p {
+  color: white;
+}
+
+#projects .project-img {
+  /* I have commented the flex-basis property & applied the width property */
+  /* flex-basis: 50%; */
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+#projects .project-img::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  opacity: .7;
+}
+
+#projects .project-img img {
+  transition: .3s ease transform;
+}
+
+#projects .project-item:hover .project-img img {
+  transform: scale(1.1);
+}
+
+/* End of Projects Section */
+
+/* About Section */
+#about .about {
+  flex-direction: column-reverse;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 100px 20px;
+}
+
+#about .col-left {
+  width: 250px;
+  height: 360px;
+}
+
+#about .col-right {
+  width: 100%;
+}
+
+#about .col-right h2 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: .2rem;
+  margin-bottom: 10px;
+}
+
+#about .col-right p {
+  margin-bottom: 20px;
+}
+
+#about .col-right .cta {
+  color: black;
+  margin-bottom: 50px;
+  padding: 10px 20px;
+  font-size: 2rem;
+}
+
+#about .col-left .about-img {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  border: 10px solid white;
+}
+
+#about .col-left .about-img::after {
+  content: '';
+  position: absolute;
+  left: -33px;
+  top: 19px;
+  height: 98%;
+  width: 98%;
+  border: 7px solid crimson;
+  z-index: -1;
+}
+
+/* End of About Section */
+
+/* Contact Section */
+#contact .contact {
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+#contact .contact-items {
+  width: 400px;
+}
+
+#contact .contact-item {
+  width: 80%;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 0px 18px 0 rgba(0, 0, 0, .3);
+  transition: .3s ease transform, .3s ease box-shadow;
+}
+
+#contact .contact-item:hover {
+  box-shadow: 0px 0px 5px 0 rgba(0, 0, 0, .3);
+  transform: scale(1.02);
+}
+
+#contact .icon {
+  width: 70px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+#contact .contact-info h1 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+#contact .contact-info h2 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  line-height: 2rem;
+}
+
+/* End of Contact Section */
+
+/* Footer Section */
+#footer {
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+}
+
+#footer .footer {
+  min-height: 200px;
+  flex-direction: column;
+  padding-top: 50px;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#footer h2 {
+  color: white;
+  font-weight: 500;
+  font-size: 1.8rem;
+  letter-spacing: .1rem;
+  margin: 10px 0;
+}
+
+#footer .social-icon {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+#footer .social-item {
+  height: 50px;
+  width: 50px;
+  margin: 0 5px;
+}
+
+#footer .social-item img {
+  filter: grayscale(1);
+  transition: .3s filter ease;
+}
+
+#footer .social-item img:hover {
+  filter: grayscale(0);
+}
+
+#footer p {
+  color: white;
+  font-size: 1.3rem;
+}
+
+/* End of Footer Section */
+
+/* Keyframes */
+@keyframes hamburger_pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+}
+
+@keyframes text_reveal_box {
+  50% {
+    width: 100%;
+    left: 0;
+  }
+
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}
+
+@keyframes text_reveal {
+  100% {
+    color: white;
+  }
+}
+
+@keyframes text_reveal_name {
+  100% {
+    color: crimson;
+  }
+}
+
+@keyframes menu_touch_1 {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+
+  10% {
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+  }
+
+  20% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+}
+
+@keyframes menu_touch_2 {
+  20% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+
+  30% {
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+  }
+
+  40% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+}
+
+@keyframes menu_touch_3 {
+  40% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+  }
+
+  60% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+}
+
+@keyframes menu_touch_4 {
+  60% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+  }
+
+  80% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+}
+
+@keyframes menu_touch_5 {
+  80% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+
+  90% {
+    transform: translate(-50%, -50%) scale(1);
+    letter-spacing: initial;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0);
+    letter-spacing: 50px;
+  }
+}
+
+/* End of Keyframes */
+
+/* Media Query for Tablet */
+@media only screen and (min-width: 768px) {
+  .cta {
+    font-size: 2.5rem;
+    padding: 20px 60px;
+  }
+
+  .section-title {
+    font-size: 6rem;
+  }
+
+  /* Header Section */
+  #header .nav-bar {
+    padding: 0 30px;
+  }
+
+  #header .nav-list ul a::after {
+    font-size: 14rem;
+  }
+
+  /* End of Header Section */
+
+  /* Hero Section */
+  #hero h1 {
+    font-size: 7rem;
+  }
+
+  /* End of Hero Section */
+
+  /* Service Section */
+  #services .service-bottom .service-item {
+    flex-basis: 45%;
+    margin: 2.5%;
+  }
+
+  /* End of Service Section */
+
+  /* Projects Section */
+  #projects .project-item {
+    flex-direction: row;
+    height: 400px;
+    margin: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  #projects .project-item:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+
+  #projects .all-projects .project-info {
+    height: 100%;
+  }
+
+  #projects .all-projects .project-img {
+    height: 100%;
+    flex-basis: 50%;
+  }
+
+  /* End of Projects Section */
+
+  /* About Section */
+  #about .about {
+    flex-direction: row;
+  }
+
+  #about .col-left {
+    width: 600px;
+    height: 400px;
+    padding-left: 60px;
+  }
+
+  #about .about .col-left .about-img::after {
+    left: -45px;
+    top: 34px;
+    border: 10px solid crimson;
+  }
+
+  #about .col-right {
+    text-align: left;
+    padding: 30px;
+  }
+
+  #about .col-right h1 {
+    text-align: left;
+  }
+
+  /* End of About Section */
+
+  /* Contact Section */
+  #contact .contact {
+    padding: 100px 0;
+    align-items: center;
+    justify-content: center;
+    min-width: 20vh;
+  }
+
+  #contact .contact-items {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 20px;
+  }
+
+  #contact .contact-item {
+    margin: 10px;
+    padding: 20px;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  #contact .contact-item .icon {
+    height: 80px;
+    width: 80px;
+  }
+
+  #contact .contact-item .icon img {
+    object-fit: contain;
+  }
+
+  #contact .contact-item .contact-info {
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+  }
+}
+
+/* End of Media Query for Tablet */
+
+/* Media Query for Desktop */
+@media only screen and (min-width: 1200px) {
+  /* Here is the fallback for Menu, in case one doesn't want a Hamburger */
+  /* #header .hamburger {
+    display: none;
+  }
+  
+  #header .nav-list ul {
+    position: initial;
+    display: block;
+    height: auto;
+    width: max-content;
+    background-color: transparent;
+  }
+  
+  #header .nav-list ul li {
+    display: inline-block;
+  }
+  
+  #header .nav-list ul li a {
+    font-size: 1.8rem;
+  }
+  
+  #header .nav-list ul a::after {
+    display: none;
+  } */
+
+  /* Header Section */
+  #header .nav-list ul a::after {
+    font-size: 20rem;
+  }
+
+  /* End of Header Section */
+
+  /* Services Section */
+  #services .service-bottom .service-item {
+    flex-basis: 22%;
+    margin: 1.5%;
+  }
+
+  /* End of Services Section */
+}
+
+/* End of Media Query for Desktop */
+
+/* Media Query for Touch Devices */
+@media (hover:none) and (pointer:coarse) {
+  #header .nav-list ul a {
+    color: white;
+  }
+
+  #header .nav-list ul a::after {
+    color: rgba(240, 248, 255, .1);
+  }
+
+  #header .nav-list ul li:nth-child(1) a::after {
+    animation: menu_touch_1 ease 10s infinite;
+  }
+
+  #header .nav-list ul li:nth-child(2) a::after {
+    animation: menu_touch_2 ease 10s infinite;
+  }
+
+  #header .nav-list ul li:nth-child(3) a::after {
+    animation: menu_touch_3 ease 10s infinite;
+  }
+
+  #header .nav-list ul li:nth-child(4) a::after {
+    animation: menu_touch_4 ease 10s infinite;
+  }
+
+  #header .nav-list ul li:nth-child(5) a::after {
+    animation: menu_touch_5 ease 10s infinite;
+  }
+}
+
+/* End of Media Query for Touch Devices */
